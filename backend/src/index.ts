@@ -1,7 +1,9 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const cors = require("cors");
-require("dotenv").config();
+import express from "express";
+import mongoose from "mongoose";
+import cors from "cors";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
 
@@ -14,7 +16,7 @@ app.get("/", (req, res) => {
 
 // Mongo connect
 mongoose
-  .connect(process.env.MONGO_URI)
+  .connect(process.env.MONGO_URI!)
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.error(err));
 
