@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import parseTorrent from "parse-torrent";
 import fs from "fs";
 import path from "path";
+import authRoutes from "./routes/auth";
 
 dotenv.config();
 
@@ -16,6 +17,8 @@ app.use(express.json());
 app.get("/", (req, res) => {
   res.json({ status: "Backend OK" });
 });
+
+app.use("/api/auth", authRoutes);
 
 // Mongo connect
 mongoose
