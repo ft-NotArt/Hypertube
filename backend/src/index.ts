@@ -6,6 +6,8 @@ import parseTorrent from "parse-torrent";
 import fs from "fs";
 import path from "path";
 import authRoutes from "./routes/auth";
+import oauthRoutes from "./routes/oauth";
+import passport from "./config/passport";
 
 dotenv.config();
 
@@ -13,12 +15,14 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use(passport.initialize());
 
 app.get("/", (req, res) => {
   res.json({ status: "Backend OK" });
 });
 
 app.use("/api/auth", authRoutes);
+app.use("/api/auth/oauth", oauthRoutes);
 
 // Mongo connect
 mongoose
